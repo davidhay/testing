@@ -1,6 +1,6 @@
 package org.datavault.testing.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -41,7 +41,8 @@ public class TimeController1Test {
         .andDo(print())
         .andReturn();
 
-    assertEquals("{\"time\":\"2023-03-09T10:27:03Z\"}", result.getResponse().getContentAsString());
+    assertEquals("{\"time\":\"2023-03-09T10:27:03Z\"}",
+        result.getResponse().getContentAsString());
   }
   @TestConfiguration
   static class TestConfig {

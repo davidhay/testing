@@ -1,6 +1,7 @@
 package org.datavault.testing.controller;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -21,7 +22,7 @@ import org.springframework.util.MimeTypeUtils;
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TimeController2Test {
 
-  private static Instant TEST_TIME = Instant.parse("2023-03-09T10:27:03Z");
+  private static final Instant TEST_TIME = Instant.parse("2023-03-09T10:27:03Z");
 
   @Autowired
   TestRestTemplate restTemplate;

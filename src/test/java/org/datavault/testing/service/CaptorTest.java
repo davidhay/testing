@@ -1,6 +1,6 @@
 package org.datavault.testing.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -39,7 +39,9 @@ public class CaptorTest {
 
     doNothing().when(mListener).listen(argStringColl.capture());
 
+    //sut
     processor.process(size);
+
     Collection<String> arg = argStringColl.getValue();
     assertEquals(size, arg.size());
 
@@ -56,7 +58,7 @@ public class CaptorTest {
     }
 
     void process(int size) {
-      List<String> items = new ArrayList();
+      List<String> items = new ArrayList<>();
       for(int i=0;i<size;i++){
         items.add("blah");
       }

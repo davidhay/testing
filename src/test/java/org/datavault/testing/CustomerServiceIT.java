@@ -1,6 +1,6 @@
 package org.datavault.testing;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest(classes = TestingApplication.class)
 @Testcontainers(disabledWithoutDocker = true)
@@ -24,8 +25,10 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 })
 public class CustomerServiceIT {
 
+  public static final DockerImageName image = DockerImageName.parse("mariadb:10.7.8");
+
   @Container
-  static MariaDBContainer<?> container = new MariaDBContainer<>();
+  static final MariaDBContainer<?> container = new MariaDBContainer<>(image);
 
   @Autowired
   CustomerService service;
@@ -56,9 +59,9 @@ public class CustomerServiceIT {
   @DynamicPropertySource
   static void registerMariaDBProperties(DynamicPropertyRegistry registry) {
     registry.add("spring.datasource.url",
-        () -> container.getJdbcUrl());
-    registry.add("spring.datasource.username", () ->  container.getUsername());
-    registry.add("spring.datasource.password", () -> container.getPassword());
+        container::getJdbcUrl);
+    registry.add("spring.datasource.username", container::getUsername);
+    registry.add("spring.datasource.password", container::getPassword);
   }
 
 }

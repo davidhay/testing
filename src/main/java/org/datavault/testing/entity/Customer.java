@@ -88,10 +88,8 @@ public class Customer {
   public boolean equals(Object o) {
     if (this == o) return true;
 
-    if (!(o instanceof Customer))
+    if (!(o instanceof Customer other))
       return false;
-
-    Customer other = (Customer) o;
 
     return id != null &&
         id.equals(other.getId());

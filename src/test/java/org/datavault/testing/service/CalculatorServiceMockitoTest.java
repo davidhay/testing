@@ -1,6 +1,6 @@
 package org.datavault.testing.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -54,9 +54,9 @@ public class CalculatorServiceMockitoTest {
 
   @Test
   void testServiceAdd3() {
-    doAnswer(new Answer() {
+    doAnswer(new Answer<>() {
       @Override
-      public Object answer(InvocationOnMock invocation) throws Throwable {
+      public Integer answer(InvocationOnMock invocation) {
         int a = invocation.getArgument(0);
         int b = invocation.getArgument(1);
         return 0 - (a*b);
